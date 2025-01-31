@@ -1,0 +1,27 @@
+<div class="p-5">
+  <h1 mat-dialog-title>Please crop your photo</h1>
+  <div mat-dialog-title class="relative">
+    <!-- <img class="absolute top-0   w-[500px] h-[500px] object-contain z-0" [src]="data.frame" alt=""> -->
+    <image-cropper
+    class="z-10 opacity-50 w-[500px] h-[500px] object-cover"
+  [imageFile]="data.image"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="data.width / data.height"
+  [allowMoveImage]="true"
+  [alignImage]="'center'"
+  (imageCropped)="imageCropped($event)"
+  >
+</image-cropper>
+</div>
+
+<div mat-dialog-action class="space-x-2">
+  <button mat-raised-button [mat-dialog-close]="false" color="warn">
+    <mat-icon>close</mat-icon>
+    Cancel</button>
+    <button color="primary" mat-flat-button color="primary" [mat-dialog-close]="result()">
+      <mat-icon>done</mat-icon>
+      done
+    </button>
+  </div>
+
+</div>

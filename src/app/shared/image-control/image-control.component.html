@@ -1,0 +1,16 @@
+<div class="flex flex-col  gap-4" [style.width]="imageWidth() + 'px'">
+  <div class="relative">
+    <img class="absolute inset-0 w-full h-full object-cover" [src]="placeholder()" alt="">
+    <img
+    class=" rounded-lg shadow-md"
+    [src]="imageSource()"
+    alt="image"
+    [width]="imageWidth()"
+    [height]="imageHeight()"/>
+  </div>
+    <input type="file" #fileInput hidden (change)="fileSelected($event)" (click)="fileInput.value =''">
+  <button mat-raised-button color="primary" (click)="fileInput.click()">
+    <mat-icon>photo</mat-icon>
+    Select Photo </button>
+</div>
+
