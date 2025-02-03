@@ -1,1 +1,29 @@
-<p>template works!</p>
+<div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+
+  <!-- Show message if no items are available -->
+  <p *ngIf="!(items$ | async)?.length" class="text-center text-gray-500">No items available.</p>
+
+  <div *ngFor="let item of (items$ | async)" tabindex="0"
+       (click)="selectFrame(item.id)"
+       (keyup.enter)="selectFrame(item.id)"
+       class="cursor-pointer relative transition-transform duration-300 ease-in-out hover:scale-105">
+    <!-- Get Selected Item Once -->
+
+      <mat-card class="p-4 flex flex-col items-center text-center overflow-hidden rounded-xl shadow-lg transition-all duration-300 ease-in-out border
+                      hover:shadow-2xl"
+                [class.bg-blue-100]="(selectedFrame$ | async)?.id === item.id">
+
+        <!-- Image -->
+        <img mat-card-image class="w-full h-full object-cover rounded-t-xl"
+             [src]="item.image"
+             alt="Photo of {{ item.name }}">
+
+        <!-- Selected Badge (Only appears when item is selected) -->
+        <div *ngIf="(selectedFrame$ | async)?.id === item.id"
+             class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+          Selected
+        </div>
+      </mat-card>
+
+    </div>
+  </div>

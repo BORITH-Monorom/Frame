@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 
 //Define Action
@@ -29,17 +30,19 @@ defaults: {
   selectedPhoto: null
 }
 })
-
+@Injectable()
 export class PhotoState{
   //✅ Selector for uploaded photos
   @Selector()
   static uploadedPhotos(state: PhotoStateModel){
+    console.log("uploadPhoto:", state);
     return state.uploadedPhotos;
   }
 
   //✅ Selector for selected photo
   @Selector()
   static selectedPhoto(state: PhotoStateModel){
+    console.log("photoState:", state);
     return state.selectedPhoto;
   }
 
